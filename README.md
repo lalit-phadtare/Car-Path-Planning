@@ -97,28 +97,28 @@ A really helpful resource for doing this project and creating smooth trajectorie
 ## Reflection
 
 * The car is designed to respect the limitations imposed and even be a bit conservative in cases where the controller behavior is not exactly know. The limits imposed are:
- * Speed = 22m/s (~50mph)
- * max. acceleration = 5 m/s2
- * controller timestep = 0.02s
- * desirable lane = middle lane
- * distance between front car = 30m
- * distance between front and back car = +/- 30 m/s
- * Decelerate while changing lanes
- * future path calculated till 30m
+	* Speed = 22m/s (~50mph)
+	* max. acceleration = 5 m/s2
+	* controller timestep = 0.02s
+	* desirable lane = middle lane
+	* distance between front car = 30m
+	* distance between front and back car = +/- 30 m/s
+	* Decelerate while changing lanes
+	* future path calculated till 30m
 
 * The path planner receives the left over path points from last path from the simulator and calculates enough points in future for the next path such that we have 50 points path to hand over to the simulator.
 
 * I decided to use the last two points from the last path and get 3 more points ahead to a distance of 30m ahead to figure out a spline equation using the spline library. We then calculate the required number of points in future using this equation.
 
 * The behavior of speed and lane changing is as follows:
- * Get speed and lane information of the sensed cars from the sensors.
- * If there is no car in front maintain both, maximum speed and acceleration.
- * If the car is not in middle lane but can safely drive in the middle lane, get to the middle lane and hold it.
- * If there is a car in front which can cause collision assuming our current speed, follow this behavior:
-  * Change lanes if possible i.e. no car is adjoining lanes in +/- 30m distance.
-  * Lane changing priority: left then right.
-  * Decelerate a little(max-2) while changing lanes. 
-  * If adjoining lanes are not empty, decelerate in current lane till the car in front is out of collision bounds. 
+	* Get speed and lane information of the sensed cars from the sensors.
+	* If there is no car in front maintain both, maximum speed and acceleration.
+	* If the car is not in middle lane but can safely drive in the middle lane, get to the middle lane and hold it.
+	* If there is a car in front which can cause collision assuming our current speed, follow this behavior:
+		* Change lanes if possible i.e. no car is adjoining lanes in +/- 30m distance.
+		* Lane changing priority: left then right.
+		* Decelerate a little(max-2) while changing lanes. 
+		* If adjoining lanes are not empty, decelerate in current lane till the car in front is out of collision bounds. 
 
 * I maintain all units in metric system for ease of calculation since the simulator also provides data in the same system.
 
