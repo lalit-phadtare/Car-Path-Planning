@@ -20,6 +20,7 @@ The highway's waypoints loop around so the frenet s value, distance along the ro
 ## Basic Build Instructions
 
 1. Clone this repo.
+2. Download Eigen library from http://eigen.tuxfamily.org/index.php?title=Main_Page in src/ dir. Dir. structure is src/Eigen/.
 2. Make a build directory: `mkdir build && cd build`
 3. Compile: `cmake .. && make`
 4. Run it: `./path_planning`.
